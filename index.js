@@ -14,15 +14,15 @@ dotenv.config();
 const port = process.env.PORT;
 const MONOGO_URL = process.env.MONOG_URI;
 
-
 //middleware
 app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL,
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    origin: "*", // Allows requests from any origin
+    credentials: true, // Be cautious: credentials won't work with '*'
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"], // Allows all common methods
+    allowedHeaders: ["Content-Type", "Authorization"], // Allow necessary headers
   })
 );
 
